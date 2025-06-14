@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Contracts.Events;
+using FluentValidation;
+using MassTransit;
 using MediatR;
 using UserService.Domain.Entities;
 using UserService.Infrastructure.UnitOfWork.Interfaces;
@@ -7,7 +9,8 @@ using UserService.Infrastructure.UnitOfWork.Interfaces;
 namespace UserService.Application.Commands.CreateUser {
     public class RegisterUserCommandHandler(
         IUnitOfWork unitOfWork,
-        IValidator<RegisterUserCommand> validator
+        IValidator<RegisterUserCommand> validator,
+        IPublishEndpoint publishEndpoint
         ) : IRequestHandler<RegisterUserCommand, Guid> {
         public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken) {
             await validator.ValidateAndThrowAsync(request, cancellationToken);
@@ -23,6 +26,8 @@ namespace UserService.Application.Commands.CreateUser {
 
             await unitOfWork.Users.AddAsync(user);
             await unitOfWork.SaveChangesAsync();
+
+            await publishEndpoint.Publish(new UserRegistered(user.Id, user.Email, user.RegisteredAt), cancellationToken);
 
             return user.Id;
         }

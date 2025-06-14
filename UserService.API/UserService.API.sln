@@ -3,13 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.API", "UserService.API.csproj", "{9234FAC8-83D6-40D0-A6D9-8E3839F6F110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.API", "UsersService.API.csproj", "{9234FAC8-83D6-40D0-A6D9-8E3839F6F110}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Application", "..\UserService.Application\UserService.Application.csproj", "{DAC35A72-12BA-43E3-B3ED-BF163F94E89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Application", "..\UserService.Application\UsersService.Application.csproj", "{DAC35A72-12BA-43E3-B3ED-BF163F94E89A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Domain", "..\UserService.Domain\UserService.Domain.csproj", "{2ECB377E-8331-404B-A4E8-C34C016D2654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Domain", "..\UserService.Domain\UsersService.Domain.csproj", "{2ECB377E-8331-404B-A4E8-C34C016D2654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "..\UserService.Infrastructure\UserService.Infrastructure.csproj", "{BEF08676-45CF-4BF6-A472-25CC49F61A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersService.Infrastructure", "..\UserService.Infrastructure\UsersService.Infrastructure.csproj", "{BEF08676-45CF-4BF6-A472-25CC49F61A6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UsersService", "UsersService", "{57C16B83-4BF5-4365-8EE1-5321F6CDBD16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B784A3C-0737-4D95-BA92-8E98A1D152E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{66248E81-2C78-498E-B7D9-5B3C545B2D16}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationsService", "NotificationsService", "{E6FCAD54-8745-466E-A066-CB4A6B91A1B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contacts", "Contacts", "{6C7E1316-ED8F-4FB5-8C76-BC71A9C51D52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{B49E8186-5CE2-483E-A753-DE7C0F8490EB}"
+	ProjectSection(SolutionItems) = preProject
+		..\Contracts\Events\UserRegistered.cs = ..\Contracts\Events\UserRegistered.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +54,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9234FAC8-83D6-40D0-A6D9-8E3839F6F110} = {57C16B83-4BF5-4365-8EE1-5321F6CDBD16}
+		{DAC35A72-12BA-43E3-B3ED-BF163F94E89A} = {57C16B83-4BF5-4365-8EE1-5321F6CDBD16}
+		{2ECB377E-8331-404B-A4E8-C34C016D2654} = {57C16B83-4BF5-4365-8EE1-5321F6CDBD16}
+		{BEF08676-45CF-4BF6-A472-25CC49F61A6C} = {57C16B83-4BF5-4365-8EE1-5321F6CDBD16}
+		{57C16B83-4BF5-4365-8EE1-5321F6CDBD16} = {7B784A3C-0737-4D95-BA92-8E98A1D152E3}
+		{E6FCAD54-8745-466E-A066-CB4A6B91A1B0} = {7B784A3C-0737-4D95-BA92-8E98A1D152E3}
+		{6C7E1316-ED8F-4FB5-8C76-BC71A9C51D52} = {66248E81-2C78-498E-B7D9-5B3C545B2D16}
+		{B49E8186-5CE2-483E-A753-DE7C0F8490EB} = {6C7E1316-ED8F-4FB5-8C76-BC71A9C51D52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BC951E3-391D-4F2D-B3FD-6A19BA8C1ECF}
