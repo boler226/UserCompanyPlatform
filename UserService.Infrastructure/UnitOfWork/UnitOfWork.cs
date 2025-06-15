@@ -1,8 +1,8 @@
-﻿using UserService.Domain.Interfaces;
-using UserService.Infrastructure.DbContext;
-using UserService.Infrastructure.UnitOfWork.Interfaces;
+﻿using UsersService.Domain.Interfaces;
+using UsersService.Infrastructure.DbContext;
+using UsersService.Infrastructure.UnitOfWork.Interfaces;
 
-namespace UserService.Infrastructure.UnitOfWork {
+namespace UsersService.Infrastructure.UnitOfWork {
     public class UnitOfWork(
         UserDbContext context,
         IUserRepository userRepository

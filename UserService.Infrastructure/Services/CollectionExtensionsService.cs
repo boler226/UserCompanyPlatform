@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using UserService.Domain.Entities;
-using UserService.Domain.Interfaces;
-using UserService.Infrastructure.DbContext;
-using UserService.Infrastructure.Repositories;
-using UserService.Infrastructure.UnitOfWork.Interfaces;
+using UsersService.Domain.Entities;
+using UsersService.Domain.Interfaces;
+using UsersService.Infrastructure.DbContext;
+using UsersService.Infrastructure.Repositories;
+using UsersService.Infrastructure.UnitOfWork.Interfaces;
 
-namespace UserService.Infrastructure.Services {
+namespace UsersService.Infrastructure.Services {
     public static class CollectionExtensionsService {
          public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString) {
             services.AddDbContext<UserDbContext>(options =>

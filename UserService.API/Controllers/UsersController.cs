@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using UserService.Application.Commands.CreateUser;
-using UserService.Application.DTOs;
-using UserService.Application.Queries.GetAllUsers;
-using UserService.Application.Queries.GetUserById;
-using UserService.Application.Queries.LoginUser;
+using UsersService.Application.Commands.CreateUser;
+using UsersService.Application.DTOs;
+using UsersService.Application.Queries.GetAllUsers;
+using UsersService.Application.Queries.GetUserById;
+using UsersService.Application.Queries.LoginUser;
 
-namespace UserService.API.Controllers {
+namespace UsersService.API.Controllers {
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class UsersController(IMediator mediator) : ControllerBase {

@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using UserService.Domain.Entities;
-using UserService.Domain.Interfaces;
+using UsersService.Domain.Entities;
+using UsersService.Domain.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace UserService.Infrastructure.Services {
+namespace UsersService.Infrastructure.Services {
     public class JwtTokenService(
         IConfiguration config,
         UserManager<User> userManager) : IJwtTokenService {

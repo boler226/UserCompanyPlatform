@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserService.Application.Commands.CreateUser;
+using UsersService.Application.Commands.CreateUser;
 
-namespace UserService.Application.Validators {
+namespace UsersService.Application.Validators {
     public class CreateUserValidator : AbstractValidator<RegisterUserCommand> {
         public CreateUserValidator() {
             RuleFor(u => u.FirstName).NotEmpty().MaximumLength(100);

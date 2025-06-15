@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using UserService.Application.DTOs;
+using UsersService.Application.DTOs;
 
-namespace UserService.Application.Queries.GetUserById {
+namespace UsersService.Application.Queries.GetUserById {
     public record GetUserByIdQuery(Guid id) : IRequest<UserDto>;
 }

@@ -1,6 +1,6 @@
-﻿using UserService.Domain.Entities;
+﻿using UsersService.Domain.Entities;
 
-namespace UserService.Domain.Interfaces {
+namespace UsersService.Domain.Interfaces {
     public interface IUserRepository {
         Task<List<User>> GetAllAsync();
         Task<User?> GetByIdAsync(Guid id);

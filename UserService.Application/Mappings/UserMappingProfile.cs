@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using UserService.Application.DTOs;
-using UserService.Domain.Entities;
+using UsersService.Application.DTOs;
+using UsersService.Domain.Entities;
 
-namespace UserService.Application.Mappings {
+namespace UsersService.Application.Mappings {
     public class UserMappingProfile : Profile {
         public UserMappingProfile() {
             CreateMap<User, UserDto>();

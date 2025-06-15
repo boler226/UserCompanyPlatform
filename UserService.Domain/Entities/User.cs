@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using UserService.Domain.Enums;
+using UsersService.Domain.Enums;
 
-namespace UserService.Domain.Entities {
+namespace UsersService.Domain.Entities {
     public class User : IdentityUser<Guid> {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;

@@ -1,8 +1,8 @@
-using UserService.Application.Commands.CreateUser;
-using UserService.Application.Validators;
+using UsersService.Application.Commands.CreateUser;
+using UsersService.Application.Validators;
 using FluentValidation;
-using UserService.Application.Mappings;
-using UserService.Infrastructure.Services;
+using UsersService.Application.Mappings;
+using UsersService.Infrastructure.Services;
 using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);

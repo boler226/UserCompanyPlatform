@@ -1,11 +1,25 @@
-version: '3.8'
+version: '3.9'
+
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+
+  users-service:
+    build:
+      context: ./UserService/UserService.API
+    ports:
+      - "5001:80"
+    depends_on:
+      - rabbitmq
+
+  notifications-worker:
+    build:
+      context: ./NotificationService/NotificationService.Worker
+    depends_on:
+      - rabbitmq

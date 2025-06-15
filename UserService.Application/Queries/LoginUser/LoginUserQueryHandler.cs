@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
-using UserService.Domain.Interfaces;
-using UserService.Infrastructure.UnitOfWork.Interfaces;
+using UsersService.Domain.Interfaces;
+using UsersService.Infrastructure.UnitOfWork.Interfaces;
 
-namespace UserService.Application.Queries.LoginUser {
+namespace UsersService.Application.Queries.LoginUser {
     public class LoginUserQueryHandler(
         IUnitOfWork unitOfWork,
         IJwtTokenService jwtTokenService

@@ -1,6 +1,6 @@
-﻿using UserService.Domain.Entities;
+﻿using UsersService.Domain.Entities;
 
-namespace UserService.Domain.Interfaces {
+namespace UsersService.Domain.Interfaces {
     public interface IJwtTokenService {
         Task<string> GenerateTokenAsync(User user);
     }

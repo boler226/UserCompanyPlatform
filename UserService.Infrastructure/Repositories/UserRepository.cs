@@ -1,14 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserService.Domain.Entities;
-using UserService.Domain.Interfaces;
-using UserService.Infrastructure.DbContext;
+using UsersService.Domain.Entities;
+using UsersService.Domain.Interfaces;
+using UsersService.Infrastructure.DbContext;
 
-namespace UserService.Infrastructure.Repositories {
+namespace UsersService.Infrastructure.Repositories {
     public class UserRepository(UserDbContext context) : IUserRepository {
         public async Task<List<User>> GetAllAsync() =>
             await context.Users.ToListAsync();

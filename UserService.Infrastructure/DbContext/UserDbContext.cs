@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using UserService.Domain.Entities;
+using UsersService.Domain.Entities;
 
-namespace UserService.Infrastructure.DbContext {
+namespace UsersService.Infrastructure.DbContext {
     public class UserDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid> {
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) {}
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

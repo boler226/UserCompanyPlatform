@@ -17,6 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\UserService.Domain\UsersService.Domain.csproj" />
-    <ProjectReference Include="..\UserService.Infrastructure\UsersService.Infrastructure.csproj" /> 
-  </ItemGroup>
+    <ProjectReference Include="..\UserService.Infrastructure\UsersService.Infrastructure.csproj" />  </ItemGroup>
+
 </Project>

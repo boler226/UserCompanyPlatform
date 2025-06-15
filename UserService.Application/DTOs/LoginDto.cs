@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserService.Application.DTOs {
+namespace UsersService.Application.DTOs {
     public class LoginDto {
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
