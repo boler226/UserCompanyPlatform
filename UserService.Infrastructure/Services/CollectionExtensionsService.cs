@@ -10,6 +10,7 @@ using UsersService.Infrastructure.UnitOfWork.Interfaces;
 namespace UsersService.Infrastructure.Services {
     public static class CollectionExtensionsService {
          public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString) {
+            Console.WriteLine($"DB CONNECTION: {connectionString}");
             services.AddDbContext<UserDbContext>(options =>
                 options.UseNpgsql(connectionString));
 

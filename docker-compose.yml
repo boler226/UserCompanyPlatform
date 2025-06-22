@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_DB: UserService
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: boler2020
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - backend
+
+  users-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: users-service
+    container_name: users-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PostgreSQLConnection=Host=host.docker.internal;Port=5432;Database=UserService;Username=postgres;Password=boler2020
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+
+  notifications-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: notifications-worker
+    container_name: notifications-worker
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PostgreSQLConnection=Host=host.docker.internal;Port=5432;Database=UserService;Username=postgres;Password=boler2020
+    depends_on:
+      - rabbitmq
+      - users-service
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+
+networks:
+  backend:

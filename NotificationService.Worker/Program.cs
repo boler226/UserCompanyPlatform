@@ -8,12 +8,12 @@ builder.Services.AddMassTransit(x => {
     x.AddConsumer<UserRegisteredConsumer>();
 
     x.UsingRabbitMq((context, cfg) => {
-        cfg.Host("localhost", "/", h => {
+        cfg.Host("rabbitmq", "/", h => {
             h.Username("guest");
             h.Password("guest");
         });
 
-        cfg.ReceiveEndpoint("user-registered-event", e => {
+        cfg.ReceiveEndpoint("user-registered-queue", e => {
             e.ConfigureConsumer<UserRegisteredConsumer>(context);
         });
     });
