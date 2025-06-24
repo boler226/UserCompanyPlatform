@@ -13,7 +13,7 @@ namespace UserService.Application.Queries.GetUserById {
             var user = await userRepository.GetByIdAsync(request.id);
 
             if (user is null)
-                throw new Exception("User not found");
+                throw new Exception("User not found!");
 
             return mapper.Map<UserDto>(user);
         }

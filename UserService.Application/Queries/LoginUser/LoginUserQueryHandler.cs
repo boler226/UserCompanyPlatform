@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Configuration;
 using UsersService.Domain.Interfaces;
 using UsersService.Infrastructure.UnitOfWork.Interfaces;
 

@@ -3,10 +3,8 @@ using UsersService.Application.Validators;
 using FluentValidation;
 using UsersService.Application.Mappings;
 using UsersService.Infrastructure.Services;
-using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using UsersService.Infrastructure.DbContext;
-using NotificationService.Infrastructure.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,23 +19,6 @@ builder.WebHost.ConfigureKestrel(options => {
     //options.ListenAnyIP(5000, listenOptions => listenOptions.UseHttps()); // HTTPS
 });
 
-
-
-builder.Services.AddMassTransit(x => {
-    x.AddConsumer<UserRegisteredConsumer>();
-
-    x.UsingRabbitMq((context, cfg) => {
-        cfg.Host("rabbitmq", "/", h => {
-            h.Username("guest");
-            h.Password("guest");
-        });
-
-        cfg.ReceiveEndpoint("user-registered-queue", e => {
-            e.ConfigureConsumer<UserRegisteredConsumer>(context);
-        });
-    });
-});
-
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(policy => {
         policy.AllowAnyOrigin()
@@ -46,11 +27,10 @@ builder.Services.AddCors(options => {
     });
 });
 
+builder.Services.AddAutoMapper(typeof(UserMappingProfile).Assembly);
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly));
-
 builder.Services.AddValidatorsFromAssembly(typeof(CreateUserValidator).Assembly);
-builder.Services.AddAutoMapper(typeof(UserMappingProfile).Assembly);
 
 var app = builder.Build();
 

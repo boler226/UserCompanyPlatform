@@ -24,8 +24,8 @@ namespace UsersService.Application.Commands.CreateUser {
                 RegisteredAt = DateTime.UtcNow
             };
 
-            await unitOfWork.Users.AddAsync(user);
-            await unitOfWork.SaveChangesAsync();
+            await unitOfWork.Users.AddAsync(user); // використання UnitOfWork не обов'язкове
+            await unitOfWork.SaveChangesAsync(); 
 
             await publishEndpoint.Publish(new UserRegisteredEvent(user.Id, user.Email, user.RegisteredAt), cancellationToken);
 
