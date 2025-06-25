@@ -9,7 +9,7 @@ namespace UsersService.Application.Queries.GetAllUsers {
         IMapper mapper
         ) : IRequestHandler<GetAllUsersQuery, List<UserDto>> {
         public async Task<List<UserDto>> Handle(GetAllUsersQuery requst, CancellationToken cancellationToken) {
-            var users = await userRepository.GetAllAsync();
+            var users = await userRepository.GetAllAsync(cancellationToken);
             return mapper.Map<List<UserDto>>(users);
         }
     }

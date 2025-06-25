@@ -10,7 +10,7 @@ namespace UserService.Application.Queries.GetUserById {
        IMapper mapper
        ) : IRequestHandler<GetUserByIdQuery, UserDto> {
         public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken) {
-            var user = await userRepository.GetByIdAsync(request.id);
+            var user = await userRepository.GetByIdAsync(request.id, cancellationToken);
 
             if (user is null)
                 throw new Exception("User not found!");

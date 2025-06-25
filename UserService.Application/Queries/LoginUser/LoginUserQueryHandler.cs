@@ -8,7 +8,7 @@ namespace UsersService.Application.Queries.LoginUser {
         IJwtTokenService jwtTokenService
         ) : IRequestHandler<LoginUserQuery, string> {
         public async Task<string> Handle(LoginUserQuery request, CancellationToken cancellationToken) {
-            var user = await unitOfWork.Users.GetByEmailAsync(request.Email)
+            var user = await unitOfWork.Users.GetByEmailAsync(request.Email, cancellationToken)
                     ?? throw new Exception("Invalid credentials");
             if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
                 throw new Exception("Invalid credentials");
