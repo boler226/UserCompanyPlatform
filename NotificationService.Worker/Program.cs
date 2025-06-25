@@ -6,6 +6,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddMassTransit(x => {
     x.AddConsumer<UserRegisteredConsumer>();
+    x.AddConsumer<CompanyCreateConsumer>();
 
     x.UsingRabbitMq((context, cfg) => {
         cfg.Host("rabbitmq", "/", h => {
@@ -13,9 +14,7 @@ builder.Services.AddMassTransit(x => {
             h.Password("guest");
         });
 
-        cfg.ReceiveEndpoint("user-registered-queue", e => {
-            e.ConfigureConsumer<UserRegisteredConsumer>(context);
-        });
+        cfg.ConfigureEndpoints(context);
     });
 });
 

@@ -2,7 +2,8 @@
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
-namespace NotificationService.Infrastructure.Consumers {
+namespace NotificationService.Infrastructure.Consumers
+{
     public class UserRegisteredConsumer(
         ILogger<UserRegisteredConsumer> logger
         ) : IConsumer<UserRegisteredEvent>{
