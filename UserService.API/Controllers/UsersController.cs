@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using UserService.Application.Commands.DeleteUser;
+using UserService.Application.Commands.UpdateUser;
 using UsersService.Application.Commands.CreateUser;
 using UsersService.Application.DTOs;
 using UsersService.Application.Queries.GetAllUsers;
@@ -32,6 +34,18 @@ namespace UsersService.API.Controllers {
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto) {
             var token = await mediator.Send(new LoginUserQuery(loginDto.Email, loginDto.Password));
             return Ok(token);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateUserCommand command) {
+            await mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id) {
+            await mediator.Send(new DeleteUserCommand(id));
+            return Ok(id);
         }
     }
 }
