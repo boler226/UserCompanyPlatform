@@ -8,8 +8,12 @@ using UsersService.Infrastructure.DbContext;
 using UsersService.Infrastructure.Repositories;
 using UsersService.Infrastructure.UnitOfWork.Interfaces;
 using NotificationService.Infrastructure.Consumers;
+using UserService.Domain.Interfaces;
+using UserService.Infrastructure.Services;
+using Contracts.Requests;
 
-namespace UsersService.Infrastructure.Services {
+namespace UsersService.Infrastructure.Services
+{
     public static class CollectionExtensionsService {
          public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString) {
             Console.WriteLine($"DB CONNECTION: {connectionString}");
@@ -31,6 +35,7 @@ namespace UsersService.Infrastructure.Services {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IEntityExistenceChecker, EntityExistenceChecker>();
 
             // MassTransit
             services.AddMassTransit(x => {
@@ -42,10 +47,10 @@ namespace UsersService.Infrastructure.Services {
                         h.Password("guest");
                     });
 
-                    cfg.ReceiveEndpoint("user-registered-queue", e => {
-                        e.ConfigureConsumer<UserRegisteredConsumer>(context);
-                    });
+                    cfg.ConfigureEndpoints(context);
                 });
+
+                x.AddRequestClient<CheckCompanyExistsRequest>();
             });
 
             return services;
