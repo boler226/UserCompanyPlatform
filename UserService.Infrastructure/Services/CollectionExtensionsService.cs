@@ -7,7 +7,6 @@ using UsersService.Domain.Interfaces;
 using UsersService.Infrastructure.DbContext;
 using UsersService.Infrastructure.Repositories;
 using UsersService.Infrastructure.UnitOfWork.Interfaces;
-using NotificationService.Infrastructure.Consumers;
 using UserService.Domain.Interfaces;
 using UserService.Infrastructure.Services;
 using Contracts.Requests;
@@ -39,8 +38,6 @@ namespace UsersService.Infrastructure.Services
 
             // MassTransit
             services.AddMassTransit(x => {
-                x.AddConsumer<UserRegisteredConsumer>();
-
                 x.UsingRabbitMq((context, cfg) => {
                     cfg.Host("rabbitmq", "/", h => {
                         h.Username("guest");

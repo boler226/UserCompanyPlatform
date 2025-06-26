@@ -5,7 +5,6 @@ using CompanyService.Infrastructure.UnitOfWork.Interfaces;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using NotificationService.Infrastructure.Consumers;
 
 namespace CompanyService.Infrastructure.Services {
     public static class CollectionExtensionsService {
@@ -20,8 +19,6 @@ namespace CompanyService.Infrastructure.Services {
 
             // MassTransit
             services.AddMassTransit(x => {
-                x.AddConsumer<CompanyCreateConsumer>();
-
                 x.UsingRabbitMq((context, cfg) => {
                     cfg.Host("rabbitmq", "/", h => {
                         h.Username("guest");
