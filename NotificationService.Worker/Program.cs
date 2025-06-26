@@ -1,8 +1,17 @@
 using NotificationService.Worker;
 using MassTransit;
 using NotificationService.Infrastructure.Consumers;
+using NotificationService.Infrastructure.DbContext;
+using Microsoft.EntityFrameworkCore;
+using NotificationService.Domain.Interfaces;
+using NotificationService.Infrastructure.Reposetories;
+using NotificationService.Infrastructure.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services.AddDbContext<NotificationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQLConnection")));
+
 
 builder.Services.AddMassTransit(x => {
     x.AddConsumer<UserRegisteredConsumer>();
@@ -17,6 +26,9 @@ builder.Services.AddMassTransit(x => {
         cfg.ConfigureEndpoints(context);
     });
 });
+
+builder.Services.AddScoped<IUserNotificationRepository, UserNotificationRepository>();
+builder.Services.AddScoped<INotificationSender, NotificationSender>();
 
 builder.Services.AddHostedService<Worker>();
 
