@@ -5,6 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-notifications
 WORKDIR /src
 
 COPY ./Contracts/ ./Contracts/
+COPY ./NotificationService.Domain/ ./NotificationService.Domain/
 COPY ./NotificationService.Infrastructure/ ./NotificationService.Infrastructure/
 COPY ./NotificationService.Worker/ ./NotificationService.Worker/
 
@@ -22,6 +23,7 @@ COPY ./UserService.API/ ./UserService.API/
 COPY ./UserService.Application/ ./UserService.Application/
 COPY ./UserService.Domain/ ./UserService.Domain/
 COPY ./UserService.Infrastructure/ ./UserService.Infrastructure/
+COPY ./NotificationService.Domain/ ./NotificationService.Domain/
 COPY ./NotificationService.Infrastructure/ ./NotificationService.Infrastructure/
 COPY ./NotificationService.Worker/ ./NotificationService.Worker/
 COPY ./Contracts/ ./Contracts/
@@ -41,6 +43,7 @@ COPY ./CompanyService.API/ ./CompanyService.API/
 COPY ./CompanyService.Application/ ./CompanyService.Application/
 COPY ./CompanyService.Domain/ ./CompanyService.Domain/
 COPY ./CompanyService.Infrastructure/ ./CompanyService.Infrastructure/
+COPY ./NotificationService.Domain/ ./NotificationService.Domain/
 COPY ./NotificationService.Infrastructure/ ./NotificationService.Infrastructure/
 COPY ./NotificationService.Worker/ ./NotificationService.Worker/
 COPY ./Contracts/ ./Contracts/
