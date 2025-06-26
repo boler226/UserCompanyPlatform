@@ -1,17 +1,25 @@
+using NotificationService.Domain.Interfaces;
+
 namespace NotificationService.Worker {
-    public class Worker : BackgroundService {
-        private readonly ILogger<Worker> _logger;
+    public class Worker(
+        ILogger<Worker> logger,
+        IServiceScopeFactory scopeFactory
+        ) : BackgroundService {
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken) {
+            while (!cancellationToken.IsCancellationRequested) {
+                using var scope = scopeFactory.CreateScope();
+                var repository = scope.ServiceProvider.GetRequiredService<IUserNotificationRepository>();
+                var sender = scope.ServiceProvider.GetRequiredService<INotificationSender>();
 
-        public Worker(ILogger<Worker> logger) {
-            _logger = logger;
-        }
+                var usersToNotify = await repository.GetUsersToNotifyAsync();
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
-            while (!stoppingToken.IsCancellationRequested) {
-                if (_logger.IsEnabled(LogLevel.Information)) {
-                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                foreach (var user in usersToNotify) {
+                    logger.LogInformation($"Надсилаємо повідомлення для {user.Email}");
+                    await sender.SendNotificationAsync(user.Email, "Вітаємо! Ви з нами вже 2 дні!");
+                    await repository.MarkAsNotifiedAsync(user.Id);
                 }
-                await Task.Delay(1000, stoppingToken);
+
+                await Task.Delay(TimeSpan.FromHours(24), cancellationToken);
             }
         }
     }

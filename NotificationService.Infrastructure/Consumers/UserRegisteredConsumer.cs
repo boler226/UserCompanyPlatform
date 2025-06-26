@@ -1,19 +1,25 @@
 ﻿using Contracts.Events;
 using MassTransit;
 using Microsoft.Extensions.Logging;
+using NotificationService.Domain.Entities;
+using NotificationService.Domain.Interfaces;
 
 namespace NotificationService.Infrastructure.Consumers
 {
     public class UserRegisteredConsumer(
-        ILogger<UserRegisteredConsumer> logger
+        ILogger<UserRegisteredConsumer> logger,
+        IUserNotificationRepository repository
         ) : IConsumer<UserRegisteredEvent>{
-        public Task Consume(ConsumeContext<UserRegisteredEvent> context) {
+        public async Task Consume(ConsumeContext<UserRegisteredEvent> context) {
             var message = context.Message;
             logger.LogInformation($" Отримано подію UserRegistered: Email={message.Email}, Дата={message.RegisteredAt}");
 
-            //надіслати повідомлення (наприклад Email)
+            var entity = new UserNotificationSchedule {
+                Email = message.Email,
+                RegisteredAt = message.RegisteredAt
+            };
 
-            return Task.CompletedTask;
+            await repository.AddAsync(entity);
         }
     }
 }
