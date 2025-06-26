@@ -44,6 +44,24 @@ services:
     networks:
       - backend
 
+  companies-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: companies-service
+    container_name: companies-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PostgreSQLConnection=Host=host.docker.internal;Port=5432;Database=UserService;Username=postgres;Password=boler2020
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "5001:5001"
+    networks:
+      - backend
+      
+
   notifications-worker:
     build:
       context: .
