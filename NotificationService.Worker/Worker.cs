@@ -15,8 +15,9 @@ namespace NotificationService.Worker {
 
                 foreach (var user in usersToNotify) {
                     logger.LogInformation($"Надсилаємо повідомлення для {user.Email}");
-                    await sender.SendNotificationAsync(user.Email, "Вітаємо! Ви з нами вже 2 дні!");
-                    await repository.MarkAsNotifiedAsync(user.Id);
+                    var result = await sender.SendNotificationAsync(user.Email, "Вітаємо! Ви з нами вже 2 дні!");
+                    if (result)
+                        await repository.MarkAsNotifiedAsync(user.Id);
                 }
 
                 await Task.Delay(TimeSpan.FromHours(24), cancellationToken);
