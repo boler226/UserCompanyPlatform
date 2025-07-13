@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #1976d2;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.user-block {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:first-child {
+    background: transparent;
+    color: white;
+  }
+
+  button:last-child {
+    background: white;
+    color: #1976d2;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+main {
+  padding: 2rem;
+  flex: 1;
+}
+
+footer {
+  background-color: #f1f1f1;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
