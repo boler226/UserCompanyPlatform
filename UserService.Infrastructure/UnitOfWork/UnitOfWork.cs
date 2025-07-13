@@ -8,8 +8,7 @@ namespace UsersService.Infrastructure.UnitOfWork {
         IUserRepository userRepository
         ) : IUnitOfWork {
         public IUserRepository Users => userRepository;
-
-        public async Task<int> SaveChangesAsync() =>
-            await context.SaveChangesAsync();
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken) =>
+            await context.SaveChangesAsync(cancellationToken);
     }
 }

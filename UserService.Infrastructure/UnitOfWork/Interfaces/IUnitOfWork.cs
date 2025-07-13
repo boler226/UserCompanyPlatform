@@ -3,6 +3,6 @@
 namespace UsersService.Infrastructure.UnitOfWork.Interfaces {
     public interface IUnitOfWork {
         IUserRepository Users { get; }
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

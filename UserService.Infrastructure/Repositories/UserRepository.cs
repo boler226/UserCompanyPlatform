@@ -16,17 +16,16 @@ namespace UsersService.Infrastructure.Repositories {
 
         public async Task AddAsync(User user, CancellationToken cancellationToken) {
             await context.Users.AddAsync(user, cancellationToken);
-            await context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(User user, CancellationToken cancellationToken) {
+        public Task UpdateAsync(User user, CancellationToken cancellationToken) {
             context.Users.Update(user);
-            await context.SaveChangesAsync(cancellationToken);
+            return Task.CompletedTask;
         }
 
-        public async Task DeleteAsync(User user, CancellationToken cancellationToken) {
+        public Task DeleteAsync(User user, CancellationToken cancellationToken) {
             context.Users.Remove(user);
-            await context.SaveChangesAsync(cancellationToken);
+            return Task.CompletedTask;
         }
     }
 }
