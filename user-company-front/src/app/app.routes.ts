@@ -1,13 +1,27 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout';
+import {AuthLayoutComponent} from './pages/auth/auth-layout/auth-layout';
+import {LoginFormComponent} from './pages/auth/login-form/login-form';
+import {RegisterFormComponent} from './pages/auth/register-form/register-form';
+import {LayoutComponent} from './layout/layout';
+import {HomeComponent} from './pages/home/home';
+import {AboutComponent} from './pages/about/about';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent),
+    component: LayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+    ]
   },
   {
-    path: 'about',
-    loadComponent: () => import('./pages/about/about').then(m => m.AboutComponent),
+    path:'',
+    component: AuthLayoutComponent,
+    children: [
+      { path: 'login', component: LoginFormComponent },
+      { path: 'register', component: RegisterFormComponent },
+    ]
   },
+  { path: '**', redirectTo: 'home' }
 ];
