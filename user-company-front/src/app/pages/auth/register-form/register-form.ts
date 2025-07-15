@@ -3,6 +3,7 @@ import {RegisterDto} from '../../../core/models/register.dto';
 import {AuthService} from '../../../core/services/auth.service';
 import {TokenService} from '../../../core/services/token.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -18,6 +19,8 @@ export class RegisterFormComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private tokenService = inject(TokenService);
+  private router = inject(Router);
+
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -47,6 +50,7 @@ export class RegisterFormComponent {
 
     this.authService.register(dto).subscribe((token) => {
       this.tokenService.setToken(token);
+      this.router.navigate(['/home']);
     });
   }
 }

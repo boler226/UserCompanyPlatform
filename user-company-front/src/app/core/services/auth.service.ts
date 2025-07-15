@@ -9,13 +9,13 @@ import {RegisterDto} from '../models/register.dto';
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly apiUrl = '/api/auth';
+  private readonly apiUrl = 'http://localhost:5000/api/Users';
 
   login(data: LoginDto): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/login`, data);
+    return this.http.post<string>(`${this.apiUrl}/Login/login`, data);
   }
 
   register(data: RegisterDto): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/register`, data);
+    return this.http.post<string>(`${this.apiUrl}/Register/register`, data);
   }
 }
