@@ -33,7 +33,7 @@ namespace UsersService.API.Controllers {
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto) {
             var token = await mediator.Send(new LoginUserQuery(loginDto.Email, loginDto.Password));
-            return Ok(token);
+            return Ok(new { token });
         }
 
         [HttpPut]
