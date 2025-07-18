@@ -8,9 +8,9 @@ import {CompanyDto} from '../models/company.dto';
 })
 export class CompanyService {
   private http = inject(HttpClient);
-  private readonly apiUrl = '/api/companies';
+  private readonly apiUrl = 'http://localhost:5001/api/Companies';
 
   getAll(): Observable<CompanyDto[]> {
-    return this.http.get<CompanyDto[]>(this.apiUrl);
+    return this.http.get<CompanyDto[]>(this.apiUrl + "/GetAll");
   }
 }
