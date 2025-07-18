@@ -1,0 +1,10 @@
+<h2>Список компаній</h2>
+
+@if (companies.length > 0) {
+  <div class="companies-container">
+    @for (company of companies; track company.id) {
+      <app-company-card [company]="company"/>
+    }
+  </div>
+} @else {
+  <p>Компанії відсутні</p>}
