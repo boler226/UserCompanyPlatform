@@ -1,10 +1,28 @@
 <h2>Список компаній</h2>
 
-@if (companies.length > 0) {
+
+
+@if (allCompanies.length > 0) {
   <div class="companies-container">
-    @for (company of companies; track company.id) {
-      <app-company-card [company]="company"/>
-    }
+
+    <app-toolbar-layout
+      [searchEnabled]="true"
+      (search)="onSearch($event)"
+    />
+    <div class="info-container">
+      <app-sort-layout
+        [sortOptions]="[
+          { label: 'Назва: за збільшенням', value: 'name_asc' },
+          { label: 'Назва: за зменшенням', value: 'name_desc' }
+        ]"
+        (sort)="onSort($event)" />
+
+      <div class="companies-list">
+        @for (company of filteredCompanies; track company.id) {
+          <app-company-card [company]="company"/>
+        }
+      </div>
+    </div>
   </div>
 } @else {
   <p>Компанії відсутні</p>}

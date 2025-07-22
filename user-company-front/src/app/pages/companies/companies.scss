@@ -1,9 +1,23 @@
 .companies-container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.companies-list {
+  display: flex;
   justify-content: left;
   flex-wrap: wrap;
 
+  gap: 10px;
   width: 1025px;
-  padding: 10px;
-  background: #cccccc;
+  padding: 10px 0;
+  background: #f7f7f7;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
 }
