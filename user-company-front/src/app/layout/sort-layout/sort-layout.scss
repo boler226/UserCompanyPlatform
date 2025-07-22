@@ -1,0 +1,42 @@
+p {
+  font-size: 12pt;
+}
+
+.sort-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  .sort-block {
+    display: flex;
+    align-items: center;
+
+    button {
+      background: white;
+      color: #333;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &.active {
+        display: block;
+        background: #333;
+        color: white;
+      }
+    }
+
+    .reset-button.active:hover {
+      background: white;
+      color: #333;
+    }
+
+    .reset-button {
+      display: none;
+    }
+  }
+}

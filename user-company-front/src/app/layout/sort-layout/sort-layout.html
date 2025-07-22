@@ -1,0 +1,22 @@
+@if (sortOptions.length > 0) {
+  <div class="sort-container">
+    СОРТУВАТИ ЗА:
+    @for (opt of sortOptions; track opt.value) {
+      <div class="sort-block">
+        <button class="sort-button"
+                [class.active]="selectedSort === opt.value"
+                (click)="onSortChange(opt.value)">
+          {{ opt.label }}
+        </button>
+        <button class="reset-button"
+                [class.active]="selectedSort === opt.value"
+                (click)="onSortReset()">
+          X
+        </button>
+      </div>
+    }
+  </div>
+}
+
+
+
