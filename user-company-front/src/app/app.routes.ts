@@ -5,11 +5,13 @@ import {RegisterFormComponent} from './pages/auth/register-form/register-form';
 import {LayoutComponent} from './layout/layout';
 import {HomeComponent} from './pages/home/home';
 import {AboutComponent} from './pages/about/about';
+import {AuthGuard} from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
@@ -23,5 +25,5 @@ export const routes: Routes = [
       { path: 'register', component: RegisterFormComponent },
     ]
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: '' }
 ];

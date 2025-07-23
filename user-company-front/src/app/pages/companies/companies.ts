@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CompanyService} from '../../core/services/company.service';
-import {CompanyDto} from '../../core/models/company.dto';
+import {CompanyDto} from '../../core/dto/company.dto';
 import {CommonModule} from '@angular/common';
 import {CompanyCardComponent} from './company-card/company-card';
 import { ToolbarLayoutComponent} from '../../layout/toolbar-layout/toolbar-layout';

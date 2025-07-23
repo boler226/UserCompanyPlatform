@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RegisterDto} from '../../../core/models/register.dto';
+import {RegisterDto} from '../../../core/dto/register.dto';
 import {AuthService} from '../../../core/services/auth.service';
 import {TokenService} from '../../../core/services/token.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
